@@ -24,7 +24,7 @@ const SareeCard = ({ saree, onAdd }: SareeCardProps) => {
           {discount}% OFF
         </span>
         <button
-          onClick={() => onAdd(saree)}
+          onClick={(e) => { e.stopPropagation(); onAdd(saree); }}
           className="absolute bottom-2 right-2 w-9 h-9 bg-primary text-primary-foreground rounded-full flex items-center justify-center shadow-lg hover:scale-110 transition-transform"
         >
           <Plus className="w-5 h-5" />
