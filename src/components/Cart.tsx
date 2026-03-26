@@ -12,21 +12,20 @@ interface CartProps {
   items: CartItem[];
   onUpdateQty: (id: number, delta: number) => void;
   onRemove: (id: number) => void;
+  onCheckout: () => void;
 }
 
-const Cart = ({ open, onClose, items, onUpdateQty, onRemove }: CartProps) => {
+const Cart = ({ open, onClose, items, onUpdateQty, onRemove, onCheckout }: CartProps) => {
   const total = items.reduce((s, i) => s + i.saree.price * i.qty, 0);
 
   return (
     <>
-      {/* Overlay */}
       <div
         className={`fixed inset-0 bg-foreground/30 z-50 transition-opacity ${
           open ? "opacity-100" : "opacity-0 pointer-events-none"
         }`}
         onClick={onClose}
       />
-      {/* Drawer */}
       <div
         className={`fixed right-0 top-0 h-full w-full max-w-sm bg-background z-50 shadow-2xl transition-transform duration-300 flex flex-col ${
           open ? "translate-x-0" : "translate-x-full"
@@ -93,8 +92,11 @@ const Cart = ({ open, onClose, items, onUpdateQty, onRemove }: CartProps) => {
                 <span>Total</span>
                 <span>₹{total.toLocaleString()}</span>
               </div>
-              <button className="w-full py-3 bg-primary text-primary-foreground rounded-lg font-semibold hover:opacity-90 transition-opacity">
-                Place Order
+              <button
+                onClick={onCheckout}
+                className="w-full py-3 bg-primary text-primary-foreground rounded-lg font-semibold hover:opacity-90 transition-opacity"
+              >
+                Proceed to Checkout
               </button>
             </div>
           </>
