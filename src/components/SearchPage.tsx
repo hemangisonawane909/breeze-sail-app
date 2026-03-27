@@ -1,14 +1,15 @@
 import { Search, X } from "lucide-react";
 import { useState } from "react";
-import { sarees, type Saree } from "@/data/sarees";
+import type { Saree } from "@/pages/Index";
 import SareeCard from "@/components/SareeCard";
 
 interface SearchPageProps {
+  sarees: Saree[];
   onAddToCart: (saree: Saree) => void;
   onSelectSaree: (saree: Saree) => void;
 }
 
-const SearchPage = ({ onAddToCart, onSelectSaree }: SearchPageProps) => {
+const SearchPage = ({ sarees, onAddToCart, onSelectSaree }: SearchPageProps) => {
   const [query, setQuery] = useState("");
 
   const results = query.trim()
@@ -22,7 +23,6 @@ const SearchPage = ({ onAddToCart, onSelectSaree }: SearchPageProps) => {
 
   return (
     <div className="animate-fade-in px-4 pt-4 pb-20">
-      {/* Search Input */}
       <div className="relative">
         <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground" />
         <input
@@ -34,16 +34,12 @@ const SearchPage = ({ onAddToCart, onSelectSaree }: SearchPageProps) => {
           className="w-full pl-10 pr-10 py-3 bg-secondary rounded-lg text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/30"
         />
         {query && (
-          <button
-            onClick={() => setQuery("")}
-            className="absolute right-3 top-1/2 -translate-y-1/2"
-          >
+          <button onClick={() => setQuery("")} className="absolute right-3 top-1/2 -translate-y-1/2">
             <X className="w-4 h-4 text-muted-foreground" />
           </button>
         )}
       </div>
 
-      {/* Results */}
       {query.trim() === "" ? (
         <div className="mt-8 text-center text-muted-foreground">
           <Search className="w-12 h-12 mx-auto mb-3 opacity-40" />

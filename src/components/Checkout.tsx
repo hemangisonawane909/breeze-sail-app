@@ -6,7 +6,7 @@ interface CheckoutProps {
   open: boolean;
   onClose: () => void;
   items: CartItem[];
-  onOrderPlaced: () => void;
+  onOrderPlaced: (delivery: { name: string; phone: string; address: string; city: string; pincode: string }) => void;
 }
 
 const Checkout = ({ open, onClose, items, onOrderPlaced }: CheckoutProps) => {
@@ -30,7 +30,7 @@ const Checkout = ({ open, onClose, items, onOrderPlaced }: CheckoutProps) => {
     if (!validate()) return;
     setSubmitted(true);
     setTimeout(() => {
-      onOrderPlaced();
+      onOrderPlaced(form);
       setSubmitted(false);
       setForm({ name: "", phone: "", address: "", city: "", pincode: "" });
     }, 2500);
@@ -48,7 +48,7 @@ const Checkout = ({ open, onClose, items, onOrderPlaced }: CheckoutProps) => {
               <CheckCircle className="w-16 h-16 text-green-600 mb-4" />
               <h2 className="font-display text-2xl font-bold text-foreground">Order Confirmed!</h2>
               <p className="text-muted-foreground text-sm mt-2 text-center">
-                Thank you, {form.name}! Your sarees will be delivered to you in 5-7 business days.
+                Thank you, {form.name}! Your sarees will be delivered in 5-7 business days.
               </p>
             </div>
           ) : (
@@ -61,7 +61,6 @@ const Checkout = ({ open, onClose, items, onOrderPlaced }: CheckoutProps) => {
               </div>
 
               <div className="p-4 space-y-4">
-                {/* Order Summary */}
                 <div className="bg-secondary rounded-lg p-3 space-y-2">
                   {items.map((item) => (
                     <div key={item.saree.id} className="flex justify-between text-sm">
@@ -75,7 +74,6 @@ const Checkout = ({ open, onClose, items, onOrderPlaced }: CheckoutProps) => {
                   </div>
                 </div>
 
-                {/* Form */}
                 <div className="space-y-3">
                   <h3 className="font-display font-semibold text-foreground">Delivery Details</h3>
                   {([
@@ -101,7 +99,6 @@ const Checkout = ({ open, onClose, items, onOrderPlaced }: CheckoutProps) => {
                   ))}
                 </div>
 
-                {/* Payment */}
                 <div className="space-y-2">
                   <h3 className="font-display font-semibold text-foreground">Payment</h3>
                   <div className="bg-secondary rounded-lg p-3 flex items-center gap-3">
