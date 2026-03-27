@@ -1,5 +1,5 @@
 import { ArrowLeft, Heart, Share2, ShoppingBag } from "lucide-react";
-import type { Saree } from "@/data/sarees";
+import type { Saree } from "@/pages/Index";
 import { useState } from "react";
 
 interface ProductDetailProps {
