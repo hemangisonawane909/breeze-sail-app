@@ -13,6 +13,7 @@ import AuthPage from "@/components/AuthPage";
 import { useAuth } from "@/hooks/useAuth";
 import { useProducts, type Product } from "@/hooks/useProducts";
 import { usePlaceOrder } from "@/hooks/useOrders";
+import { resolveImage } from "@/data/sarees";
 import { toast } from "sonner";
 
 // Map Product from DB to the Saree-like shape used by UI components
@@ -21,7 +22,7 @@ const toSaree = (p: Product) => ({
   name: p.name,
   price: p.price,
   originalPrice: p.original_price,
-  image: p.image_url,
+  image: resolveImage(p.image_url),
   category: p.category,
   description: p.description,
 });
