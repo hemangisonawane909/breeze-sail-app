@@ -1,5 +1,5 @@
 import { X, Minus, Plus, ShoppingBag } from "lucide-react";
-import type { Saree } from "@/data/sarees";
+import type { Saree } from "@/pages/Index";
 
 export interface CartItem {
   saree: Saree;
@@ -10,8 +10,8 @@ interface CartProps {
   open: boolean;
   onClose: () => void;
   items: CartItem[];
-  onUpdateQty: (id: number, delta: number) => void;
-  onRemove: (id: number) => void;
+  onUpdateQty: (id: string, delta: number) => void;
+  onRemove: (id: string) => void;
   onCheckout: () => void;
 }
 

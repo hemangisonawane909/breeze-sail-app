@@ -1,5 +1,5 @@
 import { Plus } from "lucide-react";
-import type { Saree } from "@/data/sarees";
+import type { Saree } from "@/pages/Index";
 
 interface SareeCardProps {
   saree: Saree;
@@ -11,11 +11,14 @@ const SareeCard = ({ saree, onAdd }: SareeCardProps) => {
     ((saree.originalPrice - saree.price) / saree.originalPrice) * 100
   );
 
+  // Use imported asset images for known filenames, otherwise use image_url directly
+  const imgSrc = saree.image;
+
   return (
     <div className="animate-fade-in group">
       <div className="relative overflow-hidden rounded-lg bg-secondary aspect-[3/4]">
         <img
-          src={saree.image}
+          src={imgSrc}
           alt={saree.name}
           loading="lazy"
           className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
