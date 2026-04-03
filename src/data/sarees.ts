@@ -18,5 +18,6 @@ const imageMap: Record<string, string> = {
 };
 
 export const resolveImage = (imageUrl: string): string => {
+  if (imageUrl.startsWith("http")) return imageUrl;
   return imageMap[imageUrl] || imageUrl;
 };
