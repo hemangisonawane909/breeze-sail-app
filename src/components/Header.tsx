@@ -1,4 +1,4 @@
-import { ShoppingBag, Search } from "lucide-react";
+import { ShoppingBag } from "lucide-react";
 
 interface HeaderProps {
   cartCount: number;
